@@ -55,6 +55,10 @@ export  function CardProductForm() {
               <Input name="discount" id="discount" type="number" placeholder="descuento de producto" />
             </div>
             <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="sold">vendidos</Label>
+              <Input name="sold" id="sold" type="number" placeholder="descuento de producto" />
+            </div>
+            <div className="flex flex-col space-y-1.5">
               <Label htmlFor="description">Descripcion</Label>
               <Textarea name="description" id="description" placeholder="descripcion de tu producto"/>
             </div>
