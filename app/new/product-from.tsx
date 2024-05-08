@@ -19,35 +19,11 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import prisma from "@/lib/prisma"
-import {redirect} from 'next/navigation'
+import { createProduct } from "@/src/actions/products.actions"
+
 export  function CardProductForm() { 
-  async function createProduct(formData: FormData) {
-    "use server"
-    const name = formData.get("name") as string;
-    const price = parseFloat(formData.get("price") as string);
-    const discount = parseFloat(formData.get("discount") as string);
-    const available = formData.get("available") as string;
-    const sold = parseInt(formData.get("sold") as string); 
-    const description = formData.get("description") as string;
-
-    if (!name || isNaN(price) || isNaN(discount) || !available || isNaN(sold)) {
-        return;
-    }
-
-       const newProduct = await prisma.product.create({
-        data: {
-          name: name,
-          price: price, 
-          sold:sold,
-          discount: discount,
-          available: available,
-          description: description,
-        }
-       })
-       console.log(newProduct)
-       redirect('/')
-    }
+  
+  
   return (
   <form action={createProduct}>
     <Card className="w-[350px]">
