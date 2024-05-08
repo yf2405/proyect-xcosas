@@ -5,8 +5,8 @@ import { buttonVariants } from './ui/button'
 
 function Navbar() {
   return (
-    <div className='flex justify-between'>
-       <h1> Nextaction</h1>
+    <div className='flex justify-between py-5'>
+       <h1 className='text-3x1 font-bold text-gray-800 dark:text-gray-100'> Nextaction</h1>
        <div className='flex gap-x-2 item-center'>
         <Link href="/new"  className={buttonVariants({variant: "secondary"})}>
             crea un producto

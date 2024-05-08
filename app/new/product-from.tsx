@@ -19,18 +19,34 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
+import prisma from "@/lib/prisma"
+import {redirect} from 'next/navigation'
+export  function CardProductForm() { 
+  async function createProduct(formData: FormData) {
+    "use server"
+    const name = formData.get("name") as string;
+    const price = parseFloat(formData.get("price") as string);
+    const discount = parseFloat(formData.get("discount") as string);
+    const available = formData.get("available") as string;
+    const sold = parseInt(formData.get("sold") as string); 
+    const description = formData.get("description") as string;
 
-export  function CardProductForm() {
-    
-    async function createProduct (fromData: FormData) {
-        "use server"
-       const name = fromData.get("name")
-       const price = fromData.get("price")
-       const discount = fromData.get("discount")
-       const available =  fromData.get("available")
+    if (!name || isNaN(price) || isNaN(discount) || !available || isNaN(sold)) {
+        return;
+    }
 
-       console.log(name, price, discount, available)
-
+       const newProduct = await prisma.product.create({
+        data: {
+          name: name,
+          price: price, 
+          sold:sold,
+          discount: discount,
+          available: available,
+          description: description,
+        }
+       })
+       console.log(newProduct)
+       redirect('/')
     }
   return (
   <form action={createProduct}>
@@ -48,15 +64,15 @@ export  function CardProductForm() {
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="price">Precio</Label>
-              <Input name="price" id="price" type="number" placeholder="Precio de producto" />
+              <Input name="price" id="price"  placeholder="Precio de producto" />
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="discount">descuento</Label>
-              <Input name="discount" id="discount" type="number" placeholder="descuento de producto" />
+              <Input name="discount" id="discount"  placeholder="descuento de producto" />
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="sold">vendidos</Label>
-              <Input name="sold" id="sold" type="number" placeholder="descuento de producto" />
+              <Input name="sold" id="sold" placeholder="descuento de producto" />
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="description">Descripcion</Label>
@@ -69,8 +85,8 @@ export  function CardProductForm() {
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent position="popper">
-                  <SelectItem value="next">Disponible</SelectItem>
-                  <SelectItem value="sveltekit">No disponible</SelectItem>
+                  <SelectItem value="disponible">Disponible</SelectItem>
+                  <SelectItem value="Nodisponible">No disponible</SelectItem>
                
                 </SelectContent>
               </Select>
