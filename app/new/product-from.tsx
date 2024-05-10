@@ -23,6 +23,7 @@ import { createProduct, updateProduct } from "@/src/actions/products.actions"
 import { Product } from "@prisma/client"
 import Link from "next/link"
 
+
 export  function CardProductForm({product}: {product?: Product}) { 
   
   const functionActon = product?.id ? updateProduct : createProduct
@@ -30,6 +31,7 @@ export  function CardProductForm({product}: {product?: Product}) {
   
   
   return (
+    
   <form action={functionActon}>
      <input type="hidden" name="id" value={product?.id} />
     <Card className="w-[350px]">
@@ -89,5 +91,8 @@ export  function CardProductForm({product}: {product?: Product}) {
       </CardFooter>
     </Card>
     </form>
+   
+  
   )
+
 }
