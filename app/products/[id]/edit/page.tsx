@@ -21,6 +21,8 @@ import React from 'react'
   return (
     <div className='flex justify-center item-center'>
         <CardProductForm product={product}/>
+       
+
     </div>
   )
 }

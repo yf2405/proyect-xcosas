@@ -3,16 +3,15 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { CardHeader, Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card'
 import { Product } from '@prisma/client';
 
-
 import clsx from 'clsx';
 import ProductButtonDelete from './product-button-delete';
 import Link from 'next/link';
 
 function ProductCard({ product }: { product: Product }) {
   return (
-
-    <Card key={product.id}> {/* Agregamos la prop 'key' para ayudar a React a identificar cada elemento */}
-      {product.image}
+    <Card key={product.id}>
+      
+      {product.image && <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />}
       <CardHeader className='flex flex-row justify-between'>
         <CardTitle>
           {product.name}
@@ -38,7 +37,6 @@ function ProductCard({ product }: { product: Product }) {
         </Link>
       </CardFooter>
     </Card>
-
   )
 }
 
