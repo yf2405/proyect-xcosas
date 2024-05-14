@@ -1,5 +1,5 @@
 import { Badge } from '@/components/ui/badge';
-import { Button, buttonVariants } from '@/components/ui/button'
+import {  buttonVariants } from '@/components/ui/button'
 import { CardHeader, Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card'
 import { Product } from '@prisma/client';
 

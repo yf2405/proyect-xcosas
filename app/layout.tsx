@@ -4,7 +4,7 @@ import { Inter as FontSans } from "next/font/google"
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider"
-import Navbar from "@/components/navbar";
+import NavbarHome from "@/components/navbarHome";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -32,7 +32,7 @@ export default function RootLayout({
       enableSystem
       disableTransitionOnChange
     > <main className="container mx-auto"> 
-      <Navbar/>
+      <NavbarHome/>
     </main>
         {children}
         </ThemeProvider>
