@@ -16,8 +16,8 @@ async function ProductDescription({ params }) {
     
 
     return (
-        <div className=" p-6 outline-none">
-            <DescriptionCard product={product}  />
+        <div className="flex items-center justify-center p-6 outline-none">
+            <DescriptionCard product={product} />
            
         </div>
     );

@@ -1,34 +1,38 @@
+'use client';
 
-
-import React from 'react';
-import { useCart } from '../context/CartContext';
-import { Button } from './ui/button';
+import React, { useState, useEffect } from 'react';
+import { CardContent } from './ui/card';
+import ContactForm from './contact-form'
 
 const Cart = () => {
-  const { cart, removeFromCart, clearCart } = useCart();
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    setCart(storedCart);
+  }, []);
 
   return (
-    <div className="p-6 bg-gray-800 rounded-xl">
-      <h2 className="text-2xl font-bold mb-4">Carrito de Compras</h2>
-      {cart.length === 0 ? (
-        <p className="text-gray-300">El carrito está vacío</p>
-      ) : (
-        <div className="space-y-4">
-          {cart.map((item) => (
-            <div key={item.id} className="flex justify-between items-center p-4 bg-gray-700 rounded-lg">
-              <div>
-                <h3 className="text-xl font-bold">{item.name}</h3>
-                <p className="text-gray-300">Cantidad: {item.quantity}</p>
-                <p className="text-gray-300">Precio: ${item.price}</p>
+    <div className="flex justify-center items-center flex-col container mx-auto">
+      <div className="mb-4">
+        <h2 className="text-xl">Carrito de compras</h2>
+      </div>
+      <div className="p-5 rounded-md w-full max-w-lg">
+        {cart.map((product) => (
+          <CardContent key={product.id} className="mb-2 p-5 gap-4 shadow-md rounded-md flex flex-row items-center justify-between">
+            <div className="flex items-center">
+              <div className="flex-shrink-0">
+                <img src={product.image} alt={product.name} style={{ width: '80px', height: '80px', borderRadius: '50%' }} />
               </div>
-              <Button onClick={() => removeFromCart(item.id)} className="bg-red-500">Eliminar</Button>
+              <div className="flex flex-col ml-4">
+                <h5 className="font-bold">{product.name}</h5>
+                <h5 className="font-bold">${product.price}</h5>
+              </div>
             </div>
-          ))}
-          <div className="flex justify-end">
-            <Button onClick={clearCart} className="bg-red-500">Vaciar Carrito</Button>
-          </div>
-        </div>
-      )}
+          </CardContent>
+        ))}
+        <ContactForm cart={cart} />
+      </div>
     </div>
   );
 };

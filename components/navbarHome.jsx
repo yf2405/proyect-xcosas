@@ -17,6 +17,7 @@ const NavbarHome = () => {
         </li>
       </ul>
     </nav>
+    
   );
 };
 
