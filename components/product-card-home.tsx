@@ -1,26 +1,32 @@
+
 import { Badge } from '@/components/ui/badge';
 import { CardHeader, Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
-import { buttonVariants, Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import clsx from 'clsx';
 import Link from 'next/link';
+import { Product } from '@/constants/index'; // Asegúrate de importar el tipo Product
 
-const ProductCardHome = ({ product, addToCart, inCart }) => {
+interface ProductCardHomeProps {
+  product: Product;
+  addToCart: (product: Product) => void;
+  inCart: boolean;
+}
+
+const ProductCardHome: React.FC<ProductCardHomeProps> = ({ product, addToCart, inCart }) => {
   return (
-    <Card key={product?.id} className='rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border-none w-full'>
-      {product?.image && <img src={product?.image} alt={product?.name} className="w-full h-48 object-cover rounded-xl" />}
-      <div className='rounded-xl'>
-        <CardHeader className='flex flex-row justify-between items-center mb-2'>
-          <CardTitle className='text-lg font-bold'>
-            {product?.name}
-          </CardTitle>
+    <Card key={product.id} className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border-none w-full">
+      {product.image && <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-xl" />}
+      <div className="rounded-xl">
+        <CardHeader className="flex flex-row justify-between items-center mb-2">
+          <CardTitle className="text-lg font-bold">{product.name}</CardTitle>
           <Badge
             className={clsx({
-              "text-red-500": product?.available === "nodisponible",
-              "text-green-500": product?.available === "disponible",
-              "bg-transparent": true
+              'text-red-500': product.available === 'nodisponible',
+              'text-green-500': product.available === 'disponible',
+              'bg-transparent': true,
             })}
           >
-            {product?.available}
+            {product.available}
           </Badge>
         </CardHeader>
         <CardContent className="mb-4">
@@ -33,12 +39,10 @@ const ProductCardHome = ({ product, addToCart, inCart }) => {
           <p className="text-sm text-gray-600 mt-2">Vendidos: {product.sold}</p>
         </CardContent>
         <CardFooter className="flex justify-between items-center">
-          <Link href={`/description/${product.id}/card`}>
-            Detalles
-          </Link>
-          <Button 
-            onClick={() => addToCart(product)} 
-            className='cursor-pointer uppercase border-2 font-semibold py-2 px-4 rounded-full'
+          <Link href={`/description/${product.id}/card`}>Detalles</Link>
+          <Button
+            onClick={() => addToCart(product)}
+            className="cursor-pointer uppercase border-2 font-semibold py-2 px-4 rounded-full"
             disabled={inCart}
           >
             {inCart ? 'Agregado' : 'Agregar al carrito'}

@@ -20,7 +20,7 @@ const Cart = () => {
       <div className="p-5 rounded-md w-full max-w-lg">
         {cart.map((product) => (
           <CardContent key={product.id} className="mb-2 p-5 gap-4 shadow-md rounded-md flex flex-row items-center justify-between">
-            <div className="flex items-center">
+            <div className="flex items-center gap-3">
               <div className="flex-shrink-0">
                 <img src={product.image} alt={product.name} style={{ width: '80px', height: '80px', borderRadius: '50%' }} />
               </div>

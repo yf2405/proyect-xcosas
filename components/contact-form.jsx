@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
+import { Button } from './ui/button';
 
 const ContactForm = ({ cart }) => {
   const [formData, setFormData] = useState({
@@ -39,7 +40,7 @@ const ContactForm = ({ cart }) => {
 
   return (
     <div className="mt-4 p-5 bg-white shadow-md rounded-md w-full">
-      <h3 className="text-xl font-bold">Formulario de Contacto</h3>
+      <h3 className="text-xl font-bold">Llena tus datos y pagas cuando recibas </h3>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">Nombre</label>
@@ -94,12 +95,12 @@ const ContactForm = ({ cart }) => {
             required
           />
         </div>
-        <button
+        <Button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-        >
+          variant= "secondary">
+        
           Enviar
-        </button>
+        </Button>
       </form>
     </div>
   );
