@@ -14,9 +14,9 @@ interface ProductCardHomeProps {
 
 const ProductCardHome: React.FC<ProductCardHomeProps> = ({ product, addToCart, inCart }) => {
   return (
-    <Card key={product.id} className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border-none w-full">
+    <Card key={product.id} className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border-none w-full bg-opacity-5 bg-slate-400 ">
       {product.image && <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-xl" />}
-      <div className="rounded-xl">
+      <div className="rounded-xl  ">
         <CardHeader className="flex flex-row justify-between items-center mb-2">
           <CardTitle className="text-lg font-bold">{product.name}</CardTitle>
           <Badge

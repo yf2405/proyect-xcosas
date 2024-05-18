@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "lib/getproducts.tsx", "lib/getproducts.tsx", "app/home/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "lib/getproducts.tsx", "lib/getproducts.tsx", "app/home/page.jsx", "middleware.ts"],
   "exclude": ["node_modules"]
 }

@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { Progress } from 'antd'
-import { uploadFile } from '../../firebase/firebase.js';
+import { uploadFile } from '../../../firebase/firebase';
 
 function ImageUpload({ onImageUploaded }: { onImageUploaded: (imageUrl: string) => void }) {
   const [file, setFile] = useState<File | null>(null);

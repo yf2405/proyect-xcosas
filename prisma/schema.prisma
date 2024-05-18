@@ -15,7 +15,7 @@ model Product {
   name        String
   price       Float
   sold        Int
-  discount    Int?
+  discount    Float?  
   available   String   @default("disponible")
   description String?
   createdAt   DateTime @default(now())
@@ -26,7 +26,7 @@ model Product {
 model User {
   id  Int @id @default(autoincrement())
   email String @unique
-  usernames String @unique
+  username String @unique
   password  String 
    createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

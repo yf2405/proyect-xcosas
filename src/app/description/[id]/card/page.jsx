@@ -1,5 +1,5 @@
 
-import DescriptionCard from '../../../../components/description-card';
+import DescriptionCard from '../../../../../components/description-card';
 import prisma from '@/lib/prisma'
 import { redirect } from 'next/navigation'
 import React from 'react'
