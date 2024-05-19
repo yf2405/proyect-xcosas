@@ -1,4 +1,4 @@
-import { CardProductForm } from '@/app/new/product-from'
+import { CardProductForm } from '@/src/app/new/product-from'
 import prisma from '@/lib/prisma'
 import { redirect } from 'next/navigation'
 import React from 'react'

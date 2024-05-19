@@ -39,7 +39,7 @@ const ContactForm = ({ cart }) => {
   };
 
   return (
-    <div className="mt-4 p-5 bg-white shadow-md rounded-md w-full">
+    <div className="mt-4 p-5  shadow-md rounded-md w-full">
       <h3 className="text-xl font-bold">Llena tus datos y pagas cuando recibas </h3>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -49,7 +49,7 @@ const ContactForm = ({ cart }) => {
             name="firstName"
             value={formData.firstName}
             onChange={handleInputChange}
-            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            className="mt-1 p-3 border border-gray-300 rounded-md w-full"
             required
           />
         </div>
@@ -60,7 +60,7 @@ const ContactForm = ({ cart }) => {
             name="lastName"
             value={formData.lastName}
             onChange={handleInputChange}
-            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            className="mt-1 p-3 border border-gray-300 rounded-md w-full"
             required
           />
         </div>
@@ -71,7 +71,7 @@ const ContactForm = ({ cart }) => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            className="mt-1 p-3 border border-gray-300 rounded-md w-full"
           />
         </div>
         <div className="mb-4">
@@ -81,7 +81,7 @@ const ContactForm = ({ cart }) => {
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
-            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            className="mt-1 p-3 border border-gray-300 rounded-md w-full"
             required
           />
         </div>

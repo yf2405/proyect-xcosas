@@ -1,6 +1,6 @@
 import React from 'react'
 import { CardProductForm } from './product-from'
-import ImageUpload from './upliadImage'
+
 
 function NewProduct() {
   return (

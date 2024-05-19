@@ -1,4 +1,5 @@
-import { RxHome, RxPerson, RxDashboard, RxClipboard } from "react-icons/rx";
+import { RxHome, } from "react-icons/rx";
+import { BsCart4, BsInfoCircle, BsWhatsapp } from "react-icons/bs";
 export const NavLinks = [
     {
       name: "/home",
@@ -7,14 +8,20 @@ export const NavLinks = [
     },
     {
       name: "/cart",
-      icon: RxPerson,
+      icon: BsCart4,
       link: "/cart",
     },
     {
       name: "/info",
-      icon: RxDashboard,
+      icon: BsInfoCircle,
       link: "/info",
     },
+    {
+      name: "/whats",
+      icon: BsWhatsapp,
+      link: "https://wa.link/m580z6",
+    },
+    
     
   ];
   export interface Product {
@@ -25,4 +32,9 @@ export const NavLinks = [
     price: number;
     discount?: number;
     sold: number;
+  }
+  export interface CartContextType {
+    cart: Product[];
+    addToCart: (product: Product) => void;
+    removeFromCart: (productId: string) => void;
   }

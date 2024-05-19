@@ -47,7 +47,9 @@ function DescriptionCard({ product }) {
           </CardHeader>
 
           <CardContent className='flex flex-col '>
-            <p className="text-gray-300">Descripción: {product.description}</p>
+            <p className="text-gray-300">Descripción 
+            <br />
+            {product.description}</p>
           </CardContent>
 
           <CardFooter className="flex justify-between text-center">

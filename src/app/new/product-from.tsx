@@ -24,6 +24,11 @@ import { Product } from "@prisma/client";
 import Link from "next/link";
 import ImageUpload from "./upliadImage";
 
+function formatNumber(value: string): string {
+  const cleanedValue = value.replace(/\D/g, '');
+  return cleanedValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
 export function CardProductForm({ product }: { product?: Product }) {
   const [imageUrl, setImageUrl] = useState<string | null>(
     product?.image || null
@@ -40,13 +45,19 @@ export function CardProductForm({ product }: { product?: Product }) {
     try {
       if (product?.id) {
         await updateProduct(formData, imageUrl);
-        // Actualizar el estado `imageUrl` después de la actualización
         setImageUrl(formData.get("image")?.toString() || imageUrl);
       } else {
         await createProduct(formData, imageUrl);
       }
     } catch (error) {
       console.error("Error al crear/actualizar el producto:", error);
+    }
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    if (['price', 'discount', 'sold'].includes(name)) {
+      event.target.value = formatNumber(value);
     }
   };
 
@@ -84,24 +95,27 @@ export function CardProductForm({ product }: { product?: Product }) {
                 id="price"
                 placeholder="Precio de producto"
                 defaultValue={product?.price}
+                onChange={handleInputChange}
               />
             </div>
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="discount">descuento</Label>
+              <Label htmlFor="discount">Descuento</Label>
               <Input
                 name="discount"
                 id="discount"
-                placeholder="descuento de producto"
+                placeholder="Descuento de producto"
                 defaultValue={product?.discount || ""}
+                onChange={handleInputChange}
               />
             </div>
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="sold">vendidos</Label>
+              <Label htmlFor="sold">Vendidos</Label>
               <Input
                 name="sold"
                 id="sold"
-                placeholder="descuento de producto"
+                placeholder="Vendidos de producto"
                 defaultValue={product?.sold}
+                onChange={handleInputChange}
               />
             </div>
             <div className="flex flex-col space-y-1.5">
@@ -109,7 +123,7 @@ export function CardProductForm({ product }: { product?: Product }) {
               <Textarea
                 name="description"
                 id="description"
-                placeholder="descripcion de tu producto"
+                placeholder="Descripcion de tu producto"
                 defaultValue={product?.description || ""}
               />
             </div>

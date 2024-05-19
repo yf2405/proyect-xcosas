@@ -1,19 +1,27 @@
-
+"use client"
 import { Badge } from '@/components/ui/badge';
 import { CardHeader, Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { Product } from '@/constants/index'; // Asegúrate de importar el tipo Product
+import React, { useContext } from 'react';
+import { CartContext } from '../src/context/context';
 
 interface ProductCardHomeProps {
   product: Product;
-  addToCart: (product: Product) => void;
   inCart: boolean;
 }
 
-const ProductCardHome: React.FC<ProductCardHomeProps> = ({ product, addToCart, inCart }) => {
-  return (
+const ProductCardHome: React.FC<ProductCardHomeProps> = ({ product, inCart }) => {
+  const cartContext = useContext(CartContext);
+
+  const handleAddToCart = () => {
+    if (cartContext) {
+      cartContext.addToCart(product);
+    }
+  };
+ return (
     <Card key={product.id} className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border-none w-full bg-opacity-5 bg-slate-400 ">
       {product.image && <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-xl" />}
       <div className="rounded-xl  ">
@@ -41,12 +49,12 @@ const ProductCardHome: React.FC<ProductCardHomeProps> = ({ product, addToCart, i
         <CardFooter className="flex justify-between items-center">
           <Link href={`/description/${product.id}/card`}>Detalles</Link>
           <Button
-            onClick={() => addToCart(product)}
-            className="cursor-pointer uppercase border-2 font-semibold py-2 px-4 rounded-full"
-            disabled={inCart}
-          >
-            {inCart ? 'Agregado' : 'Agregar al carrito'}
-          </Button>
+      onClick={handleAddToCart}
+      className="cursor-pointer uppercase border-2 font-semibold py-2 px-4 rounded-full"
+      disabled={inCart}
+    >
+      {inCart ? 'Agregado' : 'Agregar al carrito'}
+    </Button>
         </CardFooter>
         {inCart && <span className="mt-2 text-green-500">&#10003; Artículo en el carrito</span>}
       </div>

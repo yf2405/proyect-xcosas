@@ -1,28 +1,23 @@
 'use client';
-
-import React, { useState, useEffect } from 'react';
-import ContactForm from './contact-form'
+import React, { useContext, useEffect, useState } from 'react';
+import ContactForm from './contact-form';
 import { CardContent } from './ui/card';
+import { CartContext } from '../src/context/context';
 
 const Cart = () => {
-  const [cart, setCart] = useState([]);
+  const cartContext = useContext(CartContext);
+  if (!cartContext) {
+    throw new Error('useCartContext must be used within a CartProvider');
+  }
+  const { cart, removeFromCart } = cartContext;
+  const [cartItems, setCartItems] = useState(cart);
 
   useEffect(() => {
-    // Recuperar el carrito de compras del localStorage cuando se monta el componente
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    setCart(storedCart);
-  }, []);
-
-  const removeFromCart = (productId) => {
-    // Eliminar un producto del carrito de compras
-    const newCart = cart.filter(product => product.id !== productId);
-    setCart(newCart);
-    localStorage.setItem('cart', JSON.stringify(newCart));
-  };
+    setCartItems(cart);
+  }, [cart]);
 
   const calculateTotal = () => {
-    // Calcular el total de todos los productos en el carrito
-    return cart.reduce((total, product) => total + product.price, 0).toFixed(2);
+    return cartItems.reduce((total, product) => total + product.price, 0).toFixed(2);
   };
 
   return (
@@ -31,7 +26,7 @@ const Cart = () => {
         <h2 className="text-xl">Carrito de compras</h2>
       </div>
       <div className="p-5 rounded-md w-full max-w-md">
-        {cart.map((product) => (
+        {cartItems.map((product) => (
           <CardContent key={product.id} className="mb-2 p-5 gap-4 shadow-md rounded-md flex flex-row items-center">
             <div className="flex-shrink-0">
               <img src={product.image} alt={product.name} style={{ width: '80px', height: '80px', borderRadius: '50%' }} />
@@ -47,9 +42,8 @@ const Cart = () => {
           Total: ${calculateTotal()}
         </div>
       </div>
-      <ContactForm cart={cart}/>
+      <ContactForm cart={cartItems} />
     </div>
-    
   );
 };
 
