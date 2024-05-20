@@ -1,42 +1,45 @@
 "use client";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import {useRouter} from 'next/navigation'
-import {useState} from 'react'
+import { useState } from "react";
+
+interface LoginForm {
+  email: string;
+  password: string;
+}
 
 function LoginPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const router = useRouter()
-  const [error, setError] = useState(null)
-  
-  const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
+  } = useForm<LoginForm>();
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
 
+  const onSubmit: SubmitHandler<LoginForm> = async (data) => {
     const res = await signIn("credentials", {
       email: data.email,
       password: data.password,
       redirect: false,
     });
 
-    console.log(res)
-    if (res.error) {
-      setError(res.error)
+    if (res?.error) {
+      setError(res.error);
     } else {
-      router.push('/')
-      router.refresh()
+      router.push("/");
+       router.refresh()
     }
-  });
+  };
 
   return (
     <div className="h-[calc(100vh-7rem)] flex justify-center items-center">
-      <form onSubmit={onSubmit} className="w-1/4">
-
+      <form onSubmit={handleSubmit(onSubmit)} className="w-1/4">
         {error && (
-          <p className="bg-red-500 text-lg text-white p-3 rounded mb-2">{error}</p>
+          <p className="bg-red-500 text-lg text-white p-3 rounded mb-2">
+            {error}
+          </p>
         )}
 
         <h1 className="text-slate-200 font-bold text-4xl mb-4">Login</h1>
@@ -47,10 +50,7 @@ function LoginPage() {
         <input
           type="email"
           {...register("email", {
-            required: {
-              value: true,
-              message: "Email is required",
-            },
+            required: "Email is required",
           })}
           className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
           placeholder="user@email.com"
@@ -66,10 +66,7 @@ function LoginPage() {
         <input
           type="password"
           {...register("password", {
-            required: {
-              value: true,
-              message: "Password is required",
-            },
+            required: "Password is required",
           })}
           className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
           placeholder="******"
@@ -88,4 +85,5 @@ function LoginPage() {
     </div>
   );
 }
+
 export default LoginPage;
