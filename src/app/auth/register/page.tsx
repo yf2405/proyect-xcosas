@@ -1,6 +1,6 @@
 "use client"
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useRouter } from "next/router";
+import {useRouter} from 'next/navigation'
 import { Button } from "@/components/ui/button";
 import React from "react";
 
