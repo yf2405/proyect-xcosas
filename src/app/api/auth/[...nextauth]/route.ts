@@ -1,15 +1,17 @@
 /* @ts-nocheck */
-import NextAuth, { NextAuthOptions } from "next-auth";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 
+// Define the credentials interface
 interface Credentials {
   email: string;
   password: string;
 }
 
-export const authOptions: NextAuthOptions = {
+// Define the auth options
+const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
@@ -46,7 +48,5 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-const handler = NextAuth(authOptions);
-
-export const GET = handler;
-export const POST = handler;
+// Export the NextAuth handler as the default export
+export default NextAuth(authOptions);
