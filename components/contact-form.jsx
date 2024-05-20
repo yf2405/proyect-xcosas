@@ -1,5 +1,7 @@
 'use client';
 
+import { ToastContainer, toast, } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 import { Button } from './ui/button';
@@ -32,15 +34,23 @@ const ContactForm = ({ cart }) => {
     emailjs.send('service_ywo0qcd', 'template_17dx3po', templateParams, 'xuIyODiDl5KVYjvlk')
       .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
-        // Aquí puedes agregar cualquier lógica adicional como notificaciones o redirección
+        toast.success('Mensaje enviado con éxito!',);// Actualiza el estado del mensaje de confirmación
+        setFormData({ // Limpia el formulario
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          address: '',
+        });
       }, (err) => {
         console.log('FAILED...', err);
+        toast.error('Error al enviar el mensaje, inténtalo de nuevo.');
       });
   };
 
   return (
-    <div className="mt-4 p-5  shadow-md rounded-md w-full">
-      <h3 className="text-xl font-bold">Llena tus datos y pagas cuando recibas </h3>
+    <div className="mt-4 p-5 shadow-md rounded-md w-full">
+      <h3 className="text-xl font-bold">Llena tus datos y pagas cuando recibas</h3>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">Nombre</label>
@@ -86,7 +96,7 @@ const ContactForm = ({ cart }) => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Dirección de entrega (Incluye torre, apto, barrio, etc)</label>
+          <label className="block text-sm font-medium text-gray-700">Dirección de entrega ( Ciudad, Incluye torre, apto, barrio, etc)</label>
           <textarea
             name="address"
             value={formData.address}
@@ -97,11 +107,13 @@ const ContactForm = ({ cart }) => {
         </div>
         <Button
           type="submit"
-          variant= "secondary">
-        
+          variant="secondary"
+        >
           Enviar
         </Button>
       </form>
+      <ToastContainer position="top-left"/>
+
     </div>
   );
 };
