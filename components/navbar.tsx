@@ -3,7 +3,7 @@ import { ModeToggle } from './theme-toggle-button'
 import Link from 'next/link'
 import { buttonVariants } from './ui/button'
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../src/app/api/auth/[...nextauth]/route";
+import { authOptions } from "../src/app/api/auth/[...nextauth]/authOptions";
 import { RxInstagramLogo, } from "react-icons/rx";
 
 async function Navbar() {

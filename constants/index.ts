@@ -25,7 +25,7 @@ export const NavLinks = [
     
   ];
   export interface Product {
-    id: number;
+    id: string;
     name: string;
     image?: string;
     available: string;
