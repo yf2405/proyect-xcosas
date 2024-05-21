@@ -21,6 +21,10 @@ const ProductCardHome: React.FC<ProductCardHomeProps> = ({ product, inCart }) =>
       cartContext.addToCart(product);
     }
   };
+  const formatNumber = (value: number, decimals = 3): string => {
+    return value.toFixed(decimals);
+  };
+
 
   return (
     <Card key={product.id} className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border-none w-full bg-opacity-5 bg-slate-400 ">
@@ -40,9 +44,9 @@ const ProductCardHome: React.FC<ProductCardHomeProps> = ({ product, inCart }) =>
         </CardHeader>
         <CardContent className="mb-4">
           <div className="flex flex-col space-y-2">
-            <p className="text-xl font-semibold">${product.price}</p>
+            <p className="text-xl font-semibold">${formatNumber(product.price)}</p>
             {product.discount && (
-              <p style={{ textDecoration: 'line-through', color: '#6b7280' }}>${product.discount}</p>
+              <p style={{ textDecoration: 'line-through', color: '#6b7280' }}>${formatNumber(product.discount)}</p>
             )}
           </div>
           <p className="text-sm text-gray-600 mt-2">Vendidos: {product.sold}</p>

@@ -25,7 +25,7 @@ import Link from "next/link";
 import ImageUpload from "./upliadImage";
 
 function formatNumber(value: string): string {
-  const cleanedValue = value.replace(/\D/g, '');
+  const cleanedValue = value.replace(/[^0-9.]/g, '');
   return cleanedValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
 
