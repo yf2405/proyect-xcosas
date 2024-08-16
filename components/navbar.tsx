@@ -5,7 +5,7 @@ import { buttonVariants } from './ui/button'
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../src/app/api/auth/[...nextauth]/authOptions";
 import { RxInstagramLogo, } from "react-icons/rx";
-import  SideBar from '../SideBar'
+import  SideBar from './SideBar'
 
 async function Navbar() {
   const session = await getServerSession(authOptions);
