@@ -32,9 +32,9 @@ function ImageUpload({ onImageUploaded }: { onImageUploaded: (imageUrl: string) 
   };
 
   return (
-    <div className='flex justify-center items-center'>
-      <input type="file" name='image' onChange={handleFileChange} />
-      <button type="button" onClick={handleUpload}>Cargar imagen</button>
+    <div className='flex flex-col justify-center items-center'>
+     <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" name='image' onChange={handleFileChange} />
+      <button className="p-2 border bg-slate-600 mt-2" type="button" onClick={handleUpload}>Cargar imagen</button>
       <Progress percent={uploadProgress} />{/* Mostrar el progreso de carga */}
       {previewUrl && <img src={previewUrl} alt="Preview" style={{ maxWidth: '100%', maxHeight: '200px' }} />} {/* Mostrar la vista previa de la imagen */}
     </div>

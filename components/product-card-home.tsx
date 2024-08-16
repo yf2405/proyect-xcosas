@@ -27,44 +27,36 @@ const ProductCardHome: React.FC<ProductCardHomeProps> = ({ product, inCart }) =>
 
 
   return (
-    <Card key={product.id} className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border-none w-full bg-opacity-5 bg-slate-400 ">
-      {product.image && <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-xl" />}
-      <div className="rounded-xl  ">
-        <CardHeader className="flex flex-row justify-between items-center mb-2">
-          <CardTitle className="text-lg font-bold">{product.name}</CardTitle>
-          <Badge
-            className={clsx({
-              'text-red-500': product.available === 'nodisponible',
-              'text-green-500': product.available === 'disponible',
-              'bg-transparent': true,
-            })}
-          >
-            {product.available}
-          </Badge>
-        </CardHeader>
-        <CardContent className="mb-4">
-          <div className="flex flex-col space-y-2">
-            <p className="text-xl font-semibold">${formatNumber(product.price)}</p>
-            {product.discount && (
-              <p style={{ textDecoration: 'line-through', color: '#6b7280' }}>${formatNumber(product.discount)}</p>
-            )}
-          </div>
-          <p className="text-sm text-gray-600 mt-2">Vendidos: {product.sold}</p>
-        </CardContent>
-        <CardFooter className="flex justify-between items-center">
-          <Link href={`/description/${product.id}/card`}>Detalles</Link>
-          <Button
-            onClick={handleAddToCart}
-            className="cursor-pointer uppercase border-2 font-semibold py-2 px-4 rounded-full"
-            disabled={inCart}
-          >
-            {inCart ? 'Agregado' : 'Agregar al carrito'}
-          </Button>
-        </CardFooter>
-        {inCart && <span className="mt-2 text-green-500">&#10003; Artículo en el carrito</span>}
-      </div>
-    </Card>
-  );
-};
-
+    <Card key={product.id} className=" flex md:flex-col rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border-none w-full bg-opacity-5 bg-slate-400">
+    <Link href={`/description/${product.id}/card`}>
+      {product.image && (
+        <img src={product.image} alt={product.name} className="w-full md:h-48 h-full bg-cover rounded-xl cursor-pointer" />
+      )}
+    </Link>
+    <div className="rounded-xl">
+      <CardHeader className="flex flex-row justify-between items-center ">
+        <CardTitle className="text-lg font-bold">{product.name}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="flex justify-between">
+          <p className="text-base font-semibold">${formatNumber(product.price)}</p>
+          {product.discount && (
+            <p className='text-base' style={{ textDecoration: 'line-through', color: '#6b7280' }}>${formatNumber(product.discount)}</p>
+          )}
+        </div>
+      </CardContent>
+      <CardFooter className="flex justify-between items-center">
+        <Button
+          onClick={handleAddToCart}
+         
+          disabled={inCart}
+        >
+          {inCart ? 'Agregado' : 'Agregar al carrito'}
+        </Button>
+      </CardFooter>
+      
+    </div>
+  </Card>
+  )  
+}
 export default ProductCardHome;

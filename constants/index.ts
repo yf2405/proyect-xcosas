@@ -25,16 +25,20 @@ export const NavLinks = [
     
   ];
   export interface Product {
-    id: string;
+    id: number;
     name: string;
     image?: string;
     available: string;
     price: number;
     discount?: number;
     sold: number;
+    product: number;
+    quantity: number;
+    description?: string;
   }
   export interface CartContextType {
     cart: Product[];
     addToCart: (product: Product) => void;
-    removeFromCart: (productId: string) => void;
-  }
+    removeFromCart: (productId: number) => void;  // Cambiar de string a number
+    updateQuantity: (productId: number, quantity: number) => void; // Función para actualizar cantidad
+}

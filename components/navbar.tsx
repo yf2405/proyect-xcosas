@@ -5,6 +5,7 @@ import { buttonVariants } from './ui/button'
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../src/app/api/auth/[...nextauth]/authOptions";
 import { RxInstagramLogo, } from "react-icons/rx";
+import  SideBar from '../SideBar'
 
 async function Navbar() {
   const session = await getServerSession(authOptions);
@@ -27,8 +28,9 @@ async function Navbar() {
         <Link href="https://www.facebook.com/profile.php?id=61558633610704"  className={buttonVariants({variant: "secondary"})}>
             Facebook
         </Link>
+        
         </>)}
-         
+         <SideBar/>
         <ModeToggle/>
        </div>
         

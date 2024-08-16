@@ -71,7 +71,7 @@ export function CardProductForm({ product }: { product?: Product }) {
       <Card className="w-[350px]">
         <CardHeader>
           <CardTitle>
-            {product?.id ? "Edita producto" : "Nuevo producto"}
+            {product?.id ? "Editar producto" : "Nuevo producto"}
           </CardTitle>
           <CardDescription>
             Llena todos los campos para crear nuevo producto

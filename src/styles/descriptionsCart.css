@@ -1,0 +1,129 @@
+.product-card {
+    overflow: hidden;
+    border-radius: 1rem;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: rgba(31, 41, 55, 0.3); /* color gray-800 con 30% de opacidad */
+}
+  
+  .product-card-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  @media (min-width: 768px) {
+    .product-card-container {
+      flex-direction: row;
+    }
+  }
+  
+  .product-image-wrapper {
+    flex-shrink: 0;
+  }
+  
+  .product-image {
+    object-fit: contain;
+    border-radius: 1rem;
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+    height: 12rem;
+  }
+  
+  @media (min-width: 768px) {
+    .product-image {
+      height: auto;
+    }
+  }
+  
+  .product-image:hover {
+    transform: scale(1.05);
+  }
+  
+  .product-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    width: 100%;
+  }
+  
+  .product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .product-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .product-badge {
+    background: transparent;
+    padding: 0.5rem;
+  }
+  
+  .badge-unavailable {
+    color: #f56565;
+  }
+  
+  .badge-available {
+    color: #48bb78;
+  }
+  
+  .product-description {
+    color: #cbd5e0;
+    margin-bottom: 1rem;
+  }
+  
+  .product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .product-pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .product-price {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  .product-discount {
+    text-decoration: line-through;
+    color: #6b7280;
+  }
+  
+  .product-sold {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+  }
+  
+  .product-sold p {
+    color: #cbd5e0;
+  }
+  
+  .add-to-cart-button {
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: #3182ce;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  }
+  
+  .add-to-cart-button:hover {
+    background-color: #2b6cb0;
+  }

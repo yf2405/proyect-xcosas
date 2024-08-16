@@ -4,11 +4,13 @@ import ProductCardHome from '@/components/product-card-home';
 import { getProducts } from '@/lib/getproducts';
 import { Product } from '@/constants/index';
 import { CartContext } from '../../context/context';
+import Banner from '../banner/page';
 
 const SettingProduct: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const { cart } = useContext(CartContext) || { cart: [] };
 
+  
  
   useEffect(() => {
     const fetchProducts = async () => {
@@ -26,7 +28,8 @@ const SettingProduct: React.FC = () => {
     fetchProducts();
   }, []);
   return (
-    <div>
+    <div>    
+         <Banner/>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-6 outline-none">
         {products.map((product) => (
           <ProductCardHome
@@ -35,6 +38,7 @@ const SettingProduct: React.FC = () => {
             inCart={cart.some((cartItem) => cartItem.id === product.id)}
           />
         ))}
+ 
       </div>
     </div>
   );

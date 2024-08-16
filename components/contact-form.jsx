@@ -49,59 +49,59 @@ const ContactForm = ({ cart }) => {
   };
 
   return (
-    <div className="mt-4 p-5 shadow-md rounded-md w-full">
+    <div className="mt-4 p-5 shadow-md  rounded-md w-full">
       <h3 className="text-xl font-bold">Llena tus datos y pagas cuando recibas</h3>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Nombre</label>
+        <label htmlFor="username" className="text-slate-500 mb-2 block">Nombre</label>
           <input
             type="text"
             name="firstName"
             value={formData.firstName}
             onChange={handleInputChange}
-            className="mt-1 p-3 border border-gray-300 rounded-md w-full"
+            className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Apellido</label>
+        <label htmlFor="username" className="text-slate-500 mb-2 block">Apellido</label>
           <input
             type="text"
             name="lastName"
             value={formData.lastName}
             onChange={handleInputChange}
-            className="mt-1 p-3 border border-gray-300 rounded-md w-full"
+            className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Correo (Opcional)</label>
+        <label htmlFor="username" className="text-slate-500 mb-2 block">Correo (Opcional)</label>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            className="mt-1 p-3 border border-gray-300 rounded-md w-full"
+            className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Célular</label>
+        <label htmlFor="username" className="text-slate-500 mb-2 block">Célular</label>
           <input
             type="text"
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
-            className="mt-1 p-3 border border-gray-300 rounded-md w-full"
+             className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Dirección de entrega ( Ciudad, Incluye torre, apto, barrio, etc)</label>
+        <label htmlFor="username" className="text-slate-500 mb-2 block">Dirección de entrega ( Ciudad, Incluye torre, apto, barrio, etc)</label>
           <textarea
             name="address"
             value={formData.address}
             onChange={handleInputChange}
-            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+             className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
             required
           />
         </div>
